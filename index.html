@@ -17,7 +17,7 @@
     <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.js"></script>
 
     <!-- Add reference to the animation module. -->
-    <script src="../Common/scripts/azure-maps-animations.min.js"></script>
+    <script src="./Visualizacion/assets/js/azure-maps-animations.min.js"></script>
 
     <script type='text/javascript'>
         var map, pin, lineSource, pinSource;
@@ -35,7 +35,7 @@
             [-100.154632, 25.671546],
             [-100.151170, 25.669504],
             [-100.137219, 25.665870],
-            [-100.137985, 25.665372]
+            [-100.138353, 25.665148]
         ];
 
         function GetMap() {
@@ -123,10 +123,11 @@
                         //Capture metadata so that data driven styling can be done.
                         captureMetadata: true,
 
-                        duration: 4000,
-                        loop: document.getElementById('loopAnimation').checked,
+                        duration: 10000,
+                        loop: true,
                         reverse: document.getElementById('reverseAnimation').checked,
                         rotationOffset: (document.getElementById('reverseAnimation').checked) ? 90 : 0,
+                        autoPlay: true,
 
                         //If following enabled, add a map to the animation.
                         map: (document.getElementById('followSymbol').checked) ? map : null,
@@ -154,7 +155,7 @@
 
         function toggleLooping() {
             animation.setOptions({
-                loop: !animation.getOptions().loop
+                loop: animation.getOptions().loop
             });
         }
 
@@ -245,7 +246,7 @@
                     <ul class="list-group">
                         <li class="list-group-item"><a href="#problema">Problema</a></li>
                         <li class="list-group-item"><a href="#solucion">Solucion</a></li>
-                        <li class="list-group-item"><a href="#problema">Rutas</a></li>
+                        <li class="list-group-item"><a href="#mapa">Mapa</a></li>
                     </ul>
                 </div>
             </div>
@@ -253,8 +254,8 @@
         </div>
 
 
-        <h3 class="display-3 text-center">Problema</h3>
-        <div id="problema" class="row mt-4">
+        <h3 id="problema" class="display-3 text-center">Problema</h3>
+        <div  class="row mt-4">
 
             <div class="col-md-6">
                 <img src="https://image.flaticon.com/icons/png/512/1066/1066371.png"
@@ -272,8 +273,8 @@
             </div>
         </div>
 
-        <h3 class="display-3 text-center">Solucion</h3>
-        <div id="solucion" class="row mt-4">
+        <h3 id="solucion" class="display-3 text-center">Solucion</h3>
+        <div  class="row mt-4">
 
             <div class="col-md-6">
                 <p class="text-start">
@@ -296,7 +297,7 @@
             <div class="col">
                 <div id="myMap" style="position:relative;width:100%;min-width:290px;height:600px;"></div>
 
-                <div style="position:absolute;top:15px;left:15px;border-radius:5px;padding:5px;background-color:white;">
+                <div >
                     <input type="button" value="Play" onclick="animation.play()" />
                     <input type="button" value="Pause" onclick="animation.pause()" />
                     <input type="button" value="Stop" onclick="animation.stop()" />
